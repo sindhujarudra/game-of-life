@@ -35,12 +35,6 @@ pipeline
                 sh 'mvn deploy'
             }
         }
-         failure {
-      // notify users when the Pipeline fails
-      mail to: 'sindhu.rudra15@gmail.com',
-          subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-          body: "Something is wrong with ${env.BUILD_URL}"
-    }
   }  
 }
 
