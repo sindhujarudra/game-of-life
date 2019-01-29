@@ -3,19 +3,7 @@ pipeline
     agent any
      stages
     {
-      stage('compile')
-        {
-            steps {
-                sh 'mvn compile'
-            }
-         }
-       stage('Test')
-        {
-            steps {
-                sh 'mvn test'
-            }
-        }
-          stage('package')
+      stage('BUILD')
         {
             steps {
                 sh 'mvn package'
