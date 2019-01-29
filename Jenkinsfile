@@ -3,15 +3,17 @@ pipeline
     agent any
      stages
     {
-         stage('compile')
+         stage('Compile')
           {
             steps {
+                echo 'compiling..'
                 sh 'mvn compile'
             }
          }
-         stage('test')
+         stage('Test')
             {
             steps {
+                echo 'Testing...'
                 sh 'mvn test'
             }
          }
@@ -24,10 +26,14 @@ pipeline
                 success {
                     echo 'Now Archiving...'
                     archiveArtifacts artifacts: '**/target/*.war'
+                    mail to:"sindu.rudra15@gmail.com
                   }
+                   failure {
+                     mail to:"sindu.rudra15@gmail.com", body: "Build failed."
                 }
           }
       } 
+    }
 }
 
 
