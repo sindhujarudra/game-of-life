@@ -25,14 +25,10 @@ pipeline
             post {
                 success {
                     echo 'Now Archiving...'
-                    archiveArtifacts artifacts: '**/target/*.war'
-                    mail to:"sindu.rudra15@gmail.com
-                  }
-                   failure {
-                     mail to:"sindu.rudra15@gmail.com", body: "Build failed."
-                }
-          }
-      } 
+                    archiveArtifacts artifacts: '**/target/*.war
+                  }                  
+             }
+         } 
     }
 }
 
