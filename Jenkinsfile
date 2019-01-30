@@ -26,16 +26,13 @@ pipeline
                 success {
                     echo 'Now Archiving...'
                     archiveArtifacts artifacts: '**/target/*.war'
-                  }                  
-             }
+                    }
+                failure {
+                    mail to: 'sindhu.rudra15@gmail.com', subject:'FAILURE:'
+                      }
+               }
          }
-         stage('Deploy') {
-            steps {
-                echo 'Deploying'
-                sh "scp -i 
-            }
-        }
-  }  
+    }  
 }
 
 
