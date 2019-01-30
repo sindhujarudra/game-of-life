@@ -28,7 +28,8 @@ pipeline
                     archiveArtifacts artifacts: '**/target/*.war'
                     }
                 failure {
-                    mail to: 'sindhu.rudra15@gmail.com', subject:'FAILURE:'
+                    mail to: 'sindhu.rudra15@gmail.com', 
+                    subject:'$(currentBuild.fullDisplyName) Build Failure'
                       }
                }
          }
