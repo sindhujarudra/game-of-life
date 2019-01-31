@@ -1,39 +1,32 @@
 pipeline 
 {
     agent any
-     stages
-    {
-         stage('Compile')
-          {
+    stages{
+        stage('Build'){
             steps {
-                echo 'compiling..'
-                sh 'mvn compile'
-            }
-         }
-         stage('Test')
-          {
-            steps {
-                echo 'testing..'
-                sh 'mvn test'
-            }
-         }
-          stage('Package')
-           {
-            steps {
-                sh 'mvn package'
+                sh 'mvn clean package'
             }
             post {
                 success {
                     echo 'Now Archiving...'
                     archiveArtifacts artifacts: '**/target/*.war'
-                    }
-                failure {
-                    mail to: 'sindhu.rudra15@gmail.com', 
-                    subject:'$(currentBuild.fullDisplyName) Build Failure'
-                      }
-               }
-         }
-    }  
-}
+                }
+            }
+            stage ('Deploy to Production'){
+              steps{
+                build job: 'Deploy-to-Prod'
+            }
+            post {
+                success {
+                    echo 'Code deployed to Production.'
+                }
 
+                failure {
+                    echo ' Deployment failed.'
+                }
+            }
+        }
+     }
+   }
+ }
 
