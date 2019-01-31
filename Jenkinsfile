@@ -2,7 +2,7 @@ pipeline
 {
     agent any
     stages{
-        stage('Build'){
+        stage ('Build'){
             steps {
                 sh 'mvn clean package'
             }
@@ -11,7 +11,8 @@ pipeline
                     echo 'Now Archiving...'
                     archiveArtifacts artifacts: '**/target/*.war'
                 }
-            }
+            }      
+        } 
             stage ('Deploy to Production'){
               steps{
                 build job: 'Deploy-to-Prod'
