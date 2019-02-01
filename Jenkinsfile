@@ -20,12 +20,23 @@ pipeline
         } 
             stage ('Deploy to staging')
 			{
-              steps
+			  parallel
 			   {
-                 build job: 'deploy-to-staging'
-               } 
+			     stage ('Deploy to staging')
+				   {
+                     steps
+			          {
+                          build job: 'deploy-to-staging'
+                        } 
+                    }
+				 stage ('Deploy-Prod')
+				  {
+				     steps
+				      {
+					     build job: 'deploy-prod'
+			            }	  
+			        }			
+			    }  
             }
         }
-    }
- 
-
+	}
