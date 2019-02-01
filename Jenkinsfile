@@ -16,16 +16,7 @@ pipeline
             stage ('Deploy to Production'){
               steps{
                 build job: 'Deploy-to-Prod'
-            }
-            post {
-                success {
-                    echo 'Code deployed to Production.'
-                }
-
-                failure {
-                    echo ' Deployment failed.'
-                }
-            }
+            } 
         }
      }
    }
