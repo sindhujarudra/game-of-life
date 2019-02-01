@@ -29,13 +29,6 @@ pipeline
                                             build job: 'deploy-to-staging'
                                           } 
                                     }
-			       stage ('Deploy-Prod')
-				  {
-				     steps
-				        {
-					     build job: 'deploy-prod'
-			                }	  
-			        }			
 			    }  
                      }
              }
