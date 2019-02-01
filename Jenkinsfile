@@ -13,9 +13,9 @@ pipeline
                 }
             }      
         } 
-            stage ('Deploy to Production'){
+            stage ('Deploy to staging'){
               steps{
-                build job: 'Deploy-to-Prod'
+                build job: 'deploy-to-staging'
             } 
         }
      }
